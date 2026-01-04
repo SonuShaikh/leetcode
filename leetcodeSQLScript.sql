@@ -32,3 +32,24 @@ FROM (
 ) AS tmp
 WHERE
     tmp.RN = 1
+
+
+-- https://leetcode.com/problems/department-top-three-salaries/
+SELECT 
+        tmp.Department
+    ,   tmp.Employee
+    ,   tmp.salary
+FROM (
+    SELECT
+            dept.name AS Department
+        ,   emp.name  AS Employee
+        ,   emp.salary 
+        ,   DENSE_RANK() OVER (PARTITION BY emp.departmentid ORDER BY emp.salary DESC) AS RN
+    FROM
+        employee emp
+        INNER JOIN department dept
+            ON dept.id = emp.departmentid
+) AS tmp
+WHERE
+    tmp.RN <= 3
+ORDER BY tmp.salary DESC
