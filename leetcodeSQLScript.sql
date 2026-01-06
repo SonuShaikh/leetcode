@@ -77,3 +77,13 @@ BEGIN
   );
 END;
 $$ LANGUAGE plpgsql;
+
+
+--https://leetcode.com/problems/rank-scores/submissions/1876304944/
+-- Write your PostgreSQL query statement below
+SELECT
+        s.Score
+    ,   DENSE_RANK() OVER(ORDER BY s.score DESC) AS rank
+FROM
+    Scores s
+ORDER BY rank
