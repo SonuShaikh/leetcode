@@ -87,3 +87,15 @@ SELECT
 FROM
     Scores s
 ORDER BY rank
+
+
+-- 181. Employees Earning More Than Their Managers
+-- https://leetcode.com/problems/employees-earning-more-than-their-managers/description/
+-- Write your PostgreSQL query statement below
+SELECT
+    e2.name AS Employee
+FROM
+    Employee e1
+    JOIN Employee e2
+        ON e1.id = e2.managerid
+        AND e1.salary < e2.salary
