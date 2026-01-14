@@ -26,5 +26,26 @@ class Solution:
         return new_num
 
         #return int(''.join(map(str,numArray)))
+
+# https://leetcode.com/problems/remove-duplicates-from-sorted-array
+# remove duplicate from sorted array
+
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+
+        # Handle if no records present
+        if not nums:
+            return 0
+
+        # first element always be unique
+        i = 0
+
+        # start second pointer from 1 position
+        for j in range(1, len(nums)):
+            # if value of J and I is not matching
+            # then new unique element
+            if nums[j] != nums[i]:
+                i += 1
+                nums[i] = nums[j]
         
-        
+        return i + 1 
